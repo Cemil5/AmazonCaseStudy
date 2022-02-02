@@ -30,8 +30,12 @@ public class SearchPage extends MainPage{
     public String selectedItemName;
 
     public WebElement selectDesiredItem(int index){
-        String path = "//div[@class = 's-main-slot s-result-list s-search-results sg-row']/div[@data-index='"+index+"']";
+//  String path = "//div[@class = 's-main-slot s-result-list s-search-results sg-row']/div[@data-index='"+index+"']";
+        // data-cel-widget="search_result_3"
+        String path = "//div[@class = 's-main-slot s-result-list s-search-results sg-row']/div[@data-cel-widget='search_result_"+index+"']";
         String pathItemName = path+"//span[@class='a-size-medium a-color-base a-text-normal']";
+        selectedItemName = Driver.get().findElement(By.xpath(pathItemName)).getText();
+        System.out.println("selectedItemName = " + selectedItemName);
         ////div[@class = 's-main-slot s-result-list s-search-results sg-row']/div[@data-index='3']//span[@class='a-size-medium a-color-base a-text-normal']
         return Driver.get().findElement(By.xpath(path));
     }

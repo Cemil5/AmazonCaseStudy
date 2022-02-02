@@ -4,6 +4,7 @@ import com.amazon.pages.LoginPage;
 import com.amazon.pages.MainPage;
 import com.amazon.pages.ProductDetailPage;
 import com.amazon.pages.SearchPage;
+import com.amazon.utilities.BrowserUtils;
 import com.amazon.utilities.ConfigurationReader;
 import com.amazon.utilities.Driver;
 import io.cucumber.java.en.Given;
@@ -52,11 +53,13 @@ public class SearchStepDefs {
     @When("the user navigates to second search page")
     public void the_user_navigates_to_second_search_page() {
         searchPage.secondPage.click();
+        BrowserUtils.waitFor(3);
     }
 
     @Then("the user confirms that user is in the second page")
     public void theUserConfirmsThatUserIsInTheSecondPage() {
         String actualText = searchPage.confirmingSecondPage.getText();
+        System.out.println("actualText = " + actualText);
         Assert.assertTrue(actualText.contains("17-32"));
     }
 
@@ -74,7 +77,9 @@ public class SearchStepDefs {
 
     @Then("the user verifies that Cart subtotal shows one item on the pop up window")
     public void the_user_verifies_that_Cart_subtotal_shows_item_on_the_pop_up_window() {
+        BrowserUtils.waitFor(3);
         String actualText = productDetailPage.cartSubTotal.getText();
+        System.out.println("actualText = " + actualText);
         Assert.assertTrue("verify that Cart subtotal shows 1 item", actualText.contains("1"));
     }
 }
