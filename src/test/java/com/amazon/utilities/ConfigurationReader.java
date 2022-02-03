@@ -9,7 +9,7 @@ import java.util.Properties;
 public class ConfigurationReader {
 
     // properties --> class that store properties in key / value format
-    private static Properties properties = new Properties();
+    private static final Properties properties = new Properties();
 
     // static block: runs first before our codes
     static {

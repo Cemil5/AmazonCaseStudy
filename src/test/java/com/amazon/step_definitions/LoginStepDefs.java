@@ -40,7 +40,6 @@ public class LoginStepDefs {
         }
     }
 
-
     @Then("the user sees username after Hello word next to Language flag")
     public void the_user_sees_username_after_Hello_word_next_to_Language_flag() {
        Assert.assertEquals("verify that user logged in","Hello, egitim", mainPage.username.getText());

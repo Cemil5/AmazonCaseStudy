@@ -4,9 +4,12 @@ import com.amazon.pages.CartPage;
 import com.amazon.pages.ProductDetailPage;
 import com.amazon.pages.SearchPage;
 import com.amazon.utilities.BrowserUtils;
+import com.amazon.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
@@ -42,5 +45,14 @@ public class CartStepDefs {
         List<String> itemList = BrowserUtils.getElementsText(cartPage.activeItems);
         System.out.println("itemList = " + itemList);
         Assert.assertFalse(itemList.contains(SearchPage.selectedItemName));
+    }
+
+    @And("the user deletes the all products from the cart")
+    public void theUserDeletesTheAllProductsFromTheCart() {
+        while (cartPage.deleteButtons.size() > 0){
+                cartPage.deleteButtons.get(0).click();
+                Driver.get().navigate().refresh();
+                BrowserUtils.waitFor(2);
+            }
     }
 }

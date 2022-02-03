@@ -12,11 +12,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public class SearchStepDefs {
 
+    WebDriverWait wait = new WebDriverWait(Driver.get(), 5);
     SearchPage searchPage = new SearchPage();
 
     @Given("the user logged in to homepage")
@@ -50,16 +53,17 @@ public class SearchStepDefs {
         Assert.assertTrue("verify that search results include product", list.size() > 0);
     }
 
+    String textAtFirstPage;
     @When("the user navigates to second search page")
     public void the_user_navigates_to_second_search_page() {
+        textAtFirstPage = searchPage.confirmingSecondPage.getText();
         searchPage.secondPage.click();
-        BrowserUtils.waitFor(3);
     }
 
     @Then("the user confirms that user is in the second page")
     public void theUserConfirmsThatUserIsInTheSecondPage() {
+        wait.until(ExpectedConditions.invisibilityOfElementWithText(searchPage.textLocator,textAtFirstPage));
         String actualText = searchPage.confirmingSecondPage.getText();
-        System.out.println("actualText = " + actualText);
         Assert.assertTrue(actualText.contains("17-32"));
     }
 
@@ -77,7 +81,7 @@ public class SearchStepDefs {
 
     @Then("the user verifies that Cart subtotal shows one item on the pop up window")
     public void the_user_verifies_that_Cart_subtotal_shows_item_on_the_pop_up_window() {
-        BrowserUtils.waitFor(3);
+        wait.until(ExpectedConditions.visibilityOf(productDetailPage.cartSubTotal));
         String actualText = productDetailPage.cartSubTotal.getText();
         System.out.println("actualText = " + actualText);
         Assert.assertTrue("verify that Cart subtotal shows 1 item", actualText.contains("1"));

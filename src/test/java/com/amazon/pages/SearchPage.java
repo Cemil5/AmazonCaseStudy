@@ -27,6 +27,8 @@ public class SearchPage extends MainPage{
     @FindBy(xpath = "//span[contains(text(),'results for')]")
     public WebElement confirmingSecondPage;
 
+    public By textLocator = By.xpath("//span[contains(text(),'results for')]");
+
     public static String selectedItemName;
 
     public WebElement selectDesiredItem(int index){

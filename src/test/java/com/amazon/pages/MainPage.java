@@ -1,6 +1,5 @@
 package com.amazon.pages;
 
-import io.cucumber.java.en_lol.WEN;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
