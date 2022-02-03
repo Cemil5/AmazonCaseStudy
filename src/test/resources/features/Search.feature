@@ -3,7 +3,7 @@ Feature: Search
 
   Background:
     Given the user logged in to homepage
-  @wip
+
   Scenario: Searching a desired item
     When the user enters "TaoTronics" to the search bar on the top part of the screen and clicks search
     Then the user confirms that search results include a "TaoTronics" product
